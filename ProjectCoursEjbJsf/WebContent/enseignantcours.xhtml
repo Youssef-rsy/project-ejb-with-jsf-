@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head>
+        <title>BootsFaces Basic Page</title>
+        <f:metadata>
+    
+    <f:viewAction action="#{permanentBean.affichercoursenseignant}" />
+</f:metadata>
+    </h:head>
+    <h:body>
+    
+    
+    <b:navBar brand="Project Scolariter" brandHref="#" id="dropMenuExample" contentDisabled="#{navBarBean.navBarDisabled}">
+	  <b:navbarLinks contentDisabled="#{navBarBean.navBarLinksDisabled}">
+	    <b:navLink value="Gestion des Cours" href="/ProjectCoursEjbJsf/faces/cours.xhtml" ></b:navLink>
+	    <b:navLink value="Gestion des Etudiants" href="/ProjectCoursEjbJsf/faces/etudiant.xhtml"></b:navLink>
+	    <b:dropMenu value="Gestion des Enseignant" contentDisabled="#{navBarBean.dropMenuDisabled}">
+	      <b:navLink value="Enseignat-Permamant" href="/ProjectCoursEjbJsf/faces/permanent.xhtml"></b:navLink>
+	      <b:navLink value="Enseignat-Vacataire" href="/ProjectCoursEjbJsf/faces/vacataire.xhtml"></b:navLink>
+	    </b:dropMenu>
+	     <b:navLink value="Affectation Cours - Etudiants - Ensignants" href="/ProjectCoursEjbJsf/faces/affectation.xhtml" ></b:navLink>
+	  </b:navbarLinks>
+	</b:navBar>
+    
+    
+  
+       
+        <h:outputText value="&lt;br/&gt;" escape="false" /><h:outputText value="&lt;br/&gt;" escape="false" /><h:outputText value="&lt;br/&gt;" escape="false" /><h:outputText value="&lt;br/&gt;" escape="false" />
+      <b:container>
+      <b:row>
+  
+  	<b:column ><h:outputText value="List des Cours enseigné  Par "/><b:label   style="color:#dfe6e9;font-size: 150%;" value="#{permanentBean.nom}"></b:label>  </b:column>
+  <h:outputText value="&lt;br/&gt;" escape="false" /><h:outputText value="&lt;br/&gt;" escape="false" />
+ 
+</b:row>
+      <b:row>
+	  	 
+	  	 
+      </b:row>
+      </b:container>
+      <b:container>
+      <b:row>
+     
+       <h:form>
+      	  <b:dataTable value="#{permanentBean.mesCours}"
+               var="cour"
+	               excel="true"
+	               csv="true"
+	               pdf="true"
+	               columnVisibility="true"
+	               copy="true"
+	               print="true"
+               row-style-class=""><!-- car.enginePower>100?'light-power': -->
+    <b:dataTableColumn value="#{cour.nom}" label="Nom du Cour" />
+    
+  </b:dataTable>
+  
+  
+  
+  </h:form>
+ 
+      </b:row>
+      </b:container>
+      
+     
+    </h:body>
+</html>

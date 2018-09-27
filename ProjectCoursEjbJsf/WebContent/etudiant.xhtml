@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head>
+        <title>BootsFaces Basic Page</title>
+    </h:head>
+    <h:body>
+    <b:navBar brand="Project Scolariter" brandHref="#" id="dropMenuExample" contentDisabled="#{navBarBean.navBarDisabled}">
+	  <b:navbarLinks contentDisabled="#{navBarBean.navBarLinksDisabled}">
+	    <b:navLink value="Gestion des Cours" href="/ProjectCoursEjbJsf/faces/cours.xhtml" ></b:navLink>
+	    <b:navLink value="Gestion des Etudiants" href="/ProjectCoursEjbJsf/faces/etudiant.xhtml"></b:navLink>
+	    <b:dropMenu value="Gestion des Enseignant" contentDisabled="#{navBarBean.dropMenuDisabled}">
+	      <b:navLink value="Enseignat-Permamant" href="/ProjectCoursEjbJsf/faces/permanent.xhtml"></b:navLink>
+	      <b:navLink value="Enseignat-Vacataire" href="/ProjectCoursEjbJsf/faces/vacataire.xhtml"></b:navLink>
+	    </b:dropMenu>
+	     <b:navLink value="Affectation Cours - Etudiants - Ensignants" href="/ProjectCoursEjbJsf/faces/affectation.xhtml" ></b:navLink>
+	  </b:navbarLinks>
+	</b:navBar>
+    
+        <b:container>
+            <b:row>
+		           <b:column span="3">
+			    	<a id="atrigger" class="btn btn-primary btn-lg" href="#amodal" data-toggle="modal"> Ajouter Un Etudiant </a>
+			  	 </b:column>
+            </b:row>
+        </b:container>
+         <h:outputText value="&lt;br/&gt;" escape="false" /><h:outputText value="&lt;br/&gt;" escape="false" />
+      <b:container>
+      <b:row>
+	  	 
+	  	 <b:modal id="amodal" title="Nouveau Cour" styleClass="modalPseudoClass">
+	  	 <h:form>
+	  	 	<b:row>
+	  	 		<b:column>
+	  	 				 <b:inputText placeholder="Nom ..." value="#{etudiantBean.nom}" />
+	  	 		</b:column>
+	  	 	</b:row>
+	  	 	<b:row>
+	  	 		<b:column>
+	  	 				 <b:inputText placeholder="Prenom ..." value="#{etudiantBean.prenom}" />
+	  	 		</b:column>
+	  	 	</b:row>
+	  	 	<b:row>
+	  	 		<b:column>
+	  	 				 <b:inputText placeholder="Adresse rue..." value="#{etudiantBean.rue}" />
+	  	 		</b:column>
+	  	 	</b:row>
+	  	 	<b:row>
+	  	 		<b:column>
+	  	 				 <b:inputText placeholder="Adresse ville..." value="#{etudiantBean.ville}" />
+	  	 		</b:column>
+	  	 	</b:row>
+	  	 	<b:row>
+	  	 		<b:column>
+	  	 				 <b:inputText placeholder="Specilaite ..." value="#{etudiantBean.specialite}" />
+	  	 		</b:column>
+	  	 	</b:row>
+			  
+			  <b:row>
+	      		 	<b:commandButton look="success"  value="Enregistrer" action="#{etudiantBean.addEtudiant}" iconAwesome=""  style="margin-left:80%;"/>
+	      	  </b:row>
+      		  <f:facet name="footer">
+			    <b:button value="Close" dismiss="modal" />
+			    
+			  </f:facet>
+		</h:form>
+		</b:modal>
+      </b:row>
+      </b:container>
+      <b:container>
+      <b:row>
+      <h:form>
+      	  <b:dataTable value="#{etudiantBean.listEtudiant}"
+				               var="etudiant"
+				               widgetVar="tableWidgetVar"
+				               responsive="true"
+				               scroll-horizontally="true">
+				    <b:dataTableColumn value="#{etudiant.nom}" />
+				    <b:dataTableColumn value="#{etudiant.prenom}" />
+				    <b:dataTableColumn value="#{etudiant.adresse.rue}" />
+				    <b:dataTableColumn value="#{etudiant.adresse.ville}" />
+				    <b:dataTableColumn value="#{etudiant.specialite}" />
+				
+		<b:dataTableColumn>
+     	<b:commandButton icon="crash"
+                        value="Delete"
+                        look="danger"
+                        actionListener="#{etudiantBean.deleteEtudiant(etudiant)}"
+                        ajax="false" >
+                        
+        </b:commandButton>
+		<b:commandButton icon="list"
+                        value="Cours"
+                        href=".responsiveModalPseudoClass" data-toggle="modal"
+                        look="success"
+                        action="#{etudiantBean.listDCourEtudiant(etudiant)}"
+                         >
+		</b:commandButton>
+		
+	
+		
+     </b:dataTableColumn>	
+				  </b:dataTable>
+</h:form>
+      </b:row>
+      </b:container>
+      
+     
+    </h:body>
+</html>

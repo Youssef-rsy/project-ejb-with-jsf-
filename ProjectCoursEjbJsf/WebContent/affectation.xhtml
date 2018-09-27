@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head>
+        <title>BootsFaces Basic Page</title>
+        <f:viewAction action="#{affectationBeanBean.onload}" />
+    </h:head>
+    <h:body>
+    <b:navBar brand="Project Scolariter" brandHref="#" id="dropMenuExample" contentDisabled="#{navBarBean.navBarDisabled}">
+	  <b:navbarLinks contentDisabled="#{navBarBean.navBarLinksDisabled}">
+	    <b:navLink value="Gestion des Cours" href="/ProjectCoursEjbJsf/faces/cours.xhtml" ></b:navLink>
+	    <b:navLink value="Gestion des Etudiants" href="/ProjectCoursEjbJsf/faces/etudiant.xhtml"></b:navLink>
+	    <b:dropMenu value="Gestion des Enseignant" contentDisabled="#{navBarBean.dropMenuDisabled}">
+	      <b:navLink value="Enseignat-Permamant" href="/ProjectCoursEjbJsf/faces/permanent.xhtml"></b:navLink>
+	      <b:navLink value="Enseignat-Vacataire" href="/ProjectCoursEjbJsf/faces/vacataire.xhtml"></b:navLink>
+	    </b:dropMenu>
+	    <b:navLink value="affectationBean Cours - Etudiants - Ensignants" href="/ProjectCoursEjbJsf/faces/affectationBean.xhtml" ></b:navLink>
+	  </b:navbarLinks>
+	</b:navBar>
+    
+        
+        
+      <b:container>
+       <h:outputText value="&lt;br/&gt;" escape="false" /><h:outputText value="&lt;br/&gt;" escape="false" />
+       <h:outputText value="&lt;br/&gt;" escape="false" /><h:outputText value="&lt;br/&gt;" escape="false" />
+        <h:outputText value="&lt;br/&gt;" escape="false" /><h:outputText value="&lt;br/&gt;" escape="false" />
+         <h:outputText value="&lt;br/&gt;" escape="false" /><h:outputText value="&lt;br/&gt;" escape="false" />
+        
+      <b:row>
+      <b:panel title="affectationBean Etudiants au Cour" collapsible="false">
+		<b:row>
+			     <h:form >
+				  	 <b:row>
+						<b:column span="5">
+							 
+				 			<h:selectOneListbox value="#{affectationBean.courid}" style="width:350px;height:100px">
+					   			<f:selectItems value="#{affectationBean.lstcour}" var="cour"
+					   			itemLabel="#{cour.nom}" itemValue="#{cour.id}" />
+					   		</h:selectOneListbox>
+						</b:column>
+						<b:column span="2" style="text-align:center;">
+						
+						</b:column>
+						<b:column span="5">
+				 				<h:selectManyListbox value="#{affectationBean.etudiantid}" style="width:350px;height:100px">
+					   			<f:selectItems value="#{affectationBean.lstetudiant}" var="cour"
+					   			itemLabel="#{cour.nom}" itemValue="#{cour.id}" />
+					   		</h:selectManyListbox>
+				 		
+						</b:column>
+					</b:row>
+						<b:row>
+				      		 	<b:commandButton look="success"  value="Enregistrer" action="#{affectationBean.affecterCourEtudiant}" iconAwesome=""  style="margin-left:80%;"/>
+				      	  </b:row>
+			</h:form>
+			</b:row>
+		 </b:panel>
+	  	
+      </b:row>
+      
+       <h:outputText value="&lt;br/&gt;" escape="false" /><h:outputText value="&lt;br/&gt;" escape="false" />
+      <b:row>
+      <b:panel title="affectationBean Eenseignant au Cour" collapsible="false">
+
+			     <h:form>
+				  	 <b:row>
+						<b:column span="5">
+							 <h:selectOneListbox  value="#{affectationBean.courid}" style="width:350px;height:100px">
+					   			<f:selectItems value="#{affectationBean.lstcour}" var="cour"
+					   			itemLabel="#{cour.nom}" itemValue="#{cour.id}" />
+					   		</h:selectOneListbox>
+						</b:column>
+						<b:column span="2" style="text-align:center;">
+							
+						</b:column>
+						<b:column span="5">
+				 			<h:selectOneListbox value="#{affectationBean.enseignantid}" style="width:350px;height:100px">
+					   			<f:selectItems value="#{affectationBean.lstenseignant}" var="enseignant"
+					   			itemLabel="#{enseignant.nom} " itemValue="#{enseignant.id}" />
+					   		</h:selectOneListbox>
+				 		
+						</b:column>
+					 </b:row>
+					 <b:row>
+				      	<b:commandButton look="success"  value="Enregistrer" action="#{affectationBean.affecterEnseignantCour}" iconAwesome=""  style="margin-left:80%;"/>
+				      </b:row>
+			</h:form>
+		 </b:panel>
+	  	
+      </b:row>
+      </b:container>
+      <b:container>
+      <b:row>
+      
+ 
+      </b:row>
+      </b:container>
+      
+     
+    </h:body>
+</html>

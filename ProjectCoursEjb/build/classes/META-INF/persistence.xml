@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	<persistence-unit name="ProjectCoursEjb" transaction-type="JTA">
+	 <jta-data-source>java:/ProjectCours</jta-data-source><!-- app depond du datasource    	
+java:/MySqlDS-->
+	 
+	   <class>metier.Entity.Adresse</class>
+	   <class>metier.Entity.Cours</class>
+	   <class>metier.Entity.Enseignant</class>
+	   <class>metier.Entity.Permanent</class>
+	   <class>metier.Entity.Etudiant</class>
+	   <class>metier.Entity.Vacataire</class>
+	   <class>metier.Entity.Personne</class>
+	 	 <properties>
+         <!-- une propriete jpa relative a la base donnees pour gerer marche qlq soit le framework -->
+         <property name="javax.persistence.schema-generation.database.action" value="update"/>
+     </properties>
+	</persistence-unit>
+</persistence>
